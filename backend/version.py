@@ -3,7 +3,7 @@ import os
 __status__ = True
 __version__ = "0.4.0"
 __message__ = "Conduit Realworld API"
-__revision__ = os.geчtenv("APP_REVISION", "unknown")
+__revision__ = os.getenv("APP_REVISION", "unknown")
 
 response = {
     "success": __status__,
