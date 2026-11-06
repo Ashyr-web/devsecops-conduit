@@ -57,6 +57,13 @@
           POSTGRES_PASSWORD={{ lookup('ansible.builtin.password', '/dev/null', length=32, chars=['ascii_letters', 'digits']) }}
       no_log: true
 
+    - name: Remove stale APP_REVISION from environment file
+      ansible.builtin.lineinfile:
+        path: /etc/conduit/conduit.env
+        regexp: '^APP_REVISION='
+        state: absent
+      notify: Restart the API
+
     - name: Create the frontend secrets once and never overwrite them
       ansible.builtin.copy:
         dest: /etc/conduit/web.env
